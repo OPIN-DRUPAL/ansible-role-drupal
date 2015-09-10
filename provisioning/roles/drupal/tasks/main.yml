@@ -1,0 +1,57 @@
+---
+
+- name: Create a MySQL database for Drupal.
+  mysql_db: >
+    db={{ drupal_mysql_database }}
+    state=present
+
+- name: Create a MySQL user for Drupal.
+  mysql_user: >
+    name={{ drupal_mysql_user }}
+    host={{ item }}
+    priv={{ drupal_mysql_database }}.*:ALL
+    password={{ drupal_mysql_password }}
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost
+
+# Download Drupal using drush (--no-cache prevents checksum error).
+# - name: "Drupal: Download Drupal Core."
+#   command:
+#     drush dl drupal-{{ drupal_core_version }} --no-cache
+#     creates={{ drupal_core_path }}/index.php
+#     chdir=/var/www
+
+# Download Drupal using Git.
+- name: Check out Drupal Core to the default location.
+  git: >
+    repo={{ drupal_repo_url }}
+    version={{ drupal_core_version }}
+    update={{ drupal_keep_updated }}
+    depth=1
+    dest={{ drupal_core_path }}
+
+# Intall Drupal
+- name: Install Drupal.
+  command: >
+    drush si {{ drupal_install_profile }} -y
+    --site-name="{{ drupal_site_name }}"
+    --account-name={{ drupal_admin_name }}
+    --account-pass={{ drupal_admin_password}}
+    --db-url=mysql://{{ drupal_mysql_user }}:{{ drupal_mysql_password }}@localhost/{{ drupal_mysql_database }}
+    chdir={{ drupal_core_path }}
+    creates={{ drupal_core_path }}/sites/default/settings.php
+
+# SEE: https://drupal.org/node/2121849#comment-8413637
+- name: Set permissions properly on settings.php.
+  file: >
+    path={{ drupal_core_path }}/sites/default/settings.php
+    mode=744
+
+- name: Set permissions properly on files directory.
+  file: >
+    path={{ drupal_core_path }}/sites/default/files
+    mode=777
+    state=directory
+    recurse=yes

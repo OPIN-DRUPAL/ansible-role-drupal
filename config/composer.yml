@@ -1,0 +1,6 @@
+---
+# Composer Configuration
+composer_path: /usr/bin/composer
+composer_home_path: '/home/vagrant/.composer'
+# composer_global_packages:
+#   - { name: phpunit/phpunit, release: '@stable' }

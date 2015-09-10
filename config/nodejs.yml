@@ -1,0 +1,15 @@
+---
+# Node JS Configuration
+nodejs_enabled: yes
+nodejs_repository: ppa:chris-lea/node.js
+nodejs_npm_modules: 
+  - jshint
+  - bower
+  - susy
+  - breakpoint-sass
+  - grunt-cli
+  - compass-importer
+  - grunt-browser-sync
+  - grunt-contrib-watch
+  - grunt-sass
+  - gulp

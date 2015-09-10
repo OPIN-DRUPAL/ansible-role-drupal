@@ -1,0 +1,34 @@
+---
+# Apache
+apache_enablerepo: ""
+
+apache_listen_port: 80
+apache_listen_port_ssl: 443
+
+apache_create_vhosts: true
+apache_vhosts_filename: "vhosts.conf"
+
+# On Debian/Ubuntu, a default virtualhost is included in Apache's configuration.
+# Set this to `true` to remove that default.
+apache_remove_default_vhost: true
+
+# Apache VirtualHosts. Add one for each site you are running inside the VM. For
+# multisite deployments, you can point multiple servernames at one documentroot.
+apache_vhosts:
+  - {servername: "{{ vagrant_hostname }}", documentroot: "{{ vagrant_webroot }}"}
+  - {servername: "local.xhprof.dev", documentroot: "/usr/share/php/xhprof_html"}
+  - {servername: "local.pimpmylog.dev", documentroot: "/usr/share/php/pimpmylog"}
+
+apache_vhosts_ssl: []
+
+apache_ssl_protocol: "All -SSLv2 -SSLv3"
+apache_ssl_cipher_suite: "AES256+EECDH:AES256+EDH"
+
+apache_mods_enabled:
+  - expires.load
+  - ssl.load
+  - rewrite.load
+
+apache_server_admin: chris.smith@opin.ca
+apache_error_log_root: /var/log/apache2/apache.error.log
+apache_access_log_root: /var/log/apache2/apache.access.log
