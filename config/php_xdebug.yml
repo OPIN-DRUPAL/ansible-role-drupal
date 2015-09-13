@@ -1,16 +1,20 @@
 ---
 # XDebug
-php_xdebug_version: 2.3.2
+php_xdebug_version: 2.2.5
+
 php_xdebug_default_enable: 1
 php_xdebug_coverage_enable: 1
 php_xdebug_cli_enable: 1
-php_xdebug_module_path: /usr/lib64/php/modules
+
 php_xdebug_remote_enable: "true"
 php_xdebug_remote_connect_back: "true"
 php_xdebug_remote_host: localhost
 php_xdebug_remote_port: "9000"
 php_xdebug_remote_log: /tmp/xdebug.log
+php_xdebug_remote_autostart: "true"
+
 php_xdebug_idekey: netbeans-xdebug
+
 php_xdebug_max_nesting_level: 256
 
 # Disable main XDebug components unless needed.

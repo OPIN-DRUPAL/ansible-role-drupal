@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key']
   config.ssh.forward_agent = true
 	
-  config.vm.box = "geerlingguy/ubuntu1404"
+  config.vm.box = "ubuntu1204"
 
   for synced_folder in vconfig['vagrant_synced_folders'];
     config.vm.synced_folder synced_folder['local_path'], synced_folder['destination'],

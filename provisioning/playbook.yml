@@ -6,6 +6,7 @@
     - ../config/apt.yml
     - ../config/apache.yml
     - ../config/composer.yml
+    - ../config/drush.yml
     - ../config/drupal.yml
     - ../config/firewall.yml
     - ../config/mysql.yml
