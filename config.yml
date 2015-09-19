@@ -30,7 +30,7 @@ installed_extras:
   - memcached
   - phpmyadmin
   - pimpmylog
-  - solr
+  # - solr
   # - selenium
   - xdebug
   - xhprof

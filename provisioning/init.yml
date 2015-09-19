@@ -1,4 +1,8 @@
 ---
+# Speed up Ansible
+- name: Speed up Ansible by purging landscape-common
+  apt: pkg=landscape-common state=absent purge=yes
+
 # SSH Keys
 - name: Generate key for Github server
   shell: ssh-keyscan github.com
