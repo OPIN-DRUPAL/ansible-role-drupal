@@ -35,4 +35,4 @@ drupal_keep_updated: no
 
 # The Drupal install profile to be used
 # See note in readme if installing the Drupal 6.x
-drupal_install_profile: minimal
+drupal_install_profile: standard
